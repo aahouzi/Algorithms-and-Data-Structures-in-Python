@@ -5,4 +5,4 @@ This repository contains a Python implementation of basic sorting algorithms, as
 - **Sorting algorithms:** Selection sort, Bubble sort, Insertion sort, Merging sort, Counting sort, Quicksort.
 - **Trees & Graphs:** OOP implementation, Printing a tree, Inserting an element in a binary tree, Searching in a binary tree, Min/Max in a binary tree, Deleting elements in a tree, Breadth First Search (BFS), Depth First Search (DFS), Dijkstra's Shortest Path algorithm.
 - **Dynamic Programming:** The coin change problem, Stock maximise, etc..
-
+- **Others:** Problems involving lists, hashmaps, arrays, sets, etc..
