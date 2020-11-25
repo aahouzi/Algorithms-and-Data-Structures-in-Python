@@ -1,4 +1,4 @@
-# Algorithms-and-Data-Structures-in-Python
+# Algorithms and Data Structures in Python
 ## Description
 This repository contains a Python implementation of basic sorting algorithms, as well as an implementation of trees, graphs and some relevant techniques and algorithms to manipulate those data structures. It will also include some basic problems of Dynamic Programming, and how can one think about a problem in order to solve it efficiently. More precisely, this involves the following algorithms: 
 
