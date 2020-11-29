@@ -179,7 +179,24 @@ def find_scroll(A, B):
                 print(k)
 
 
-#find_scroll(100, 500)
+
+def min_coins(amount, c):
+
+    L = [0] + [10000 for _ in range(amount)]
+    for coin in c:
+        for i in range(1, amount + 1):
+            if i >= coin:
+                L[i] = min(L[i], L[i - coin] + 1)
+
+    return -1 if L[amount] > amount else L[amount]
 
 
-print("15" >= "18")
+adjecendy_mat = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
+                 [4, 0, 8, 0, 0, 0, 0, 11, 0],
+                 [0, 8, 0, 7, 0, 4, 0, 0, 2],
+                 [0, 0, 7, 0, 9, 14, 0, 0, 0],
+                 [0, 0, 0, 9, 0, 10, 0, 0, 0],
+                 [0, 0, 4, 14, 10, 0, 2, 0, 0],
+                 [0, 0, 0, 0, 0, 2, 0, 1, 6],
+                 [8, 11, 0, 0, 0, 0, 1, 0, 7],
+                 [0, 0, 2, 0, 0, 0, 6, 7, 0]]
