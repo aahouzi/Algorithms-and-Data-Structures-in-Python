@@ -1,3 +1,13 @@
+############################################################################################
+#                                  Author: Anas AHOUZI                                     #
+#                               File Name: Trees_and_graphs.py                             #
+#                           Creation Date: August 31, 2020                                 #
+#                         Source Language: Python                                          #
+#     Repository: https://github.com/aahouzi/Algorithms-and-Data-Structures-in-Python      #
+#                              --- Code Description ---                                    #
+#                       Implementation of trees & Graphs in Python                         #
+############################################################################################
+
 from collections import defaultdict
 import sys
 
@@ -202,26 +212,6 @@ class djikstra_graph():
         self.print_dist(dist)
 
 
-def min_coins(amount, c):
-
-    L = [0] + [10000 for _ in range(amount)]
-    for coin in c:
-        for i in range(1, amount + 1):
-            if i >= coin:
-                L[i] = min(L[i], L[i - coin] + 1)
-
-    return -1 if L[amount] > amount else L[amount]
-
-
-adjecendy_mat = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
-                 [4, 0, 8, 0, 0, 0, 0, 11, 0],
-                 [0, 8, 0, 7, 0, 4, 0, 0, 2],
-                 [0, 0, 7, 0, 9, 14, 0, 0, 0],
-                 [0, 0, 0, 9, 0, 10, 0, 0, 0],
-                 [0, 0, 4, 14, 10, 0, 2, 0, 0],
-                 [0, 0, 0, 0, 0, 2, 0, 1, 6],
-                 [8, 11, 0, 0, 0, 0, 1, 0, 7],
-                 [0, 0, 2, 0, 0, 0, 6, 7, 0]]
 
 g = djikstra_graph(9, adjecendy_mat)
 g.djikstra(0)
