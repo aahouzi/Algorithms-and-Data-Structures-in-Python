@@ -5,20 +5,40 @@
 #                         Source Language: Python                                          #
 #     Repository: https://github.com/aahouzi/Algorithms-and-Data-Structures-in-Python      #
 #                              --- Code Description ---                                    #
-#                       Implementation of trees & Graphs in Python                         #
+#                       Implementation of trees & graphs in Python                         #
 ############################################################################################
+
+
+################################################################################
+#                                   Packages                                   #
+################################################################################
 
 from collections import defaultdict
 import sys
 
+################################################################################
+#                         Implementation of a tree                             #
+################################################################################
+
 
 class Node:
     def __init__(self, data, left, right):
+        """
+        This function is for intializing the tree.
+        :param data: A scalar.
+        :param left: A Node class in the left side of data.
+        :param right: A Node class in the right side of data.
+        """
         self.Left = left
         self.Right = right
         self.data = data
 
     def print_tree(self):
+        """
+        This function prints all the elements of a tree, from the left
+        side, center and then the right side.
+        :return:
+        """
 
         if self.Left:
             self.Left.print_tree()
@@ -30,6 +50,11 @@ class Node:
             self.Right.print_tree()
 
     def insert(self, elt):
+        """
+        This function inserts an element in the correct position in a binary tree.
+        :param elt: The element to insert.
+        :return:
+        """
 
         if self.data >= elt:
             if self.Left is None:
@@ -44,6 +69,11 @@ class Node:
                 self.Right.insert(elt)
 
     def search(self, elt):
+        """
+        This function looks for an element in a binary tree.
+        :param elt: The element to look for.
+        :return:
+        """
 
         if elt == self.data:
             print("Found")
@@ -65,6 +95,10 @@ class Node:
                 self.Right.search(elt)
 
     def min_tree(self):
+        """
+        This function looks for the minimum element in a binary tree.
+        :return: The minimum of a binary tree.
+        """
 
         if self.Left is None:
             return self.data
@@ -72,6 +106,11 @@ class Node:
             return self.Left.min_tree()
 
     def delete(self, elt):
+        """
+        This function deletes an element from a binary tree.
+        :param elt: The element to be deleted.
+        :return:
+        """
 
         if elt < self.data:
             if self.Left == Node(elt, None, None):
@@ -105,6 +144,10 @@ class Node:
                 self.data = var
 
     def sum_root_path(self):
+        """
+        :return: This function returns the 10-weighted sum of all
+        paths in the tree from the root to the leaf.
+        """
 
         if self.Right is not None and self.Left is not None:
             self.Left.data += self.data * 10
@@ -123,61 +166,103 @@ class Node:
             return self.data
 
 
+################################################################################
+#                         Implementation of a graph                            #
+################################################################################
+
+
 class Graph():
     def __init__(self):
+        """
+        We will initialize the graph as a defaultdict, where every key
+        is a vertex, whose value is a list containing adjacent vertices.
+        """
         self.graph = defaultdict(list)
 
     def add_edge(self, u, v):
+        """
+        :param u: An existing vertex.
+        :param v: A new vertex, that we connect with the existing one
+        by adding it to the list of u.
+        :return:
+        """
         self.graph[u].append(v)
 
-    def BFS(self, s):
+    def bfs(self, s):
+        """
+        This is an implementation of Breadth First Search, where we start from a certain vertex s in the
+        graph, and we print its adjacent vertices. We continue the same process until all the vertices are
+        explored.
+        :param s: The starting vertex.
+        :return:
+        """
 
-        visited = [False] * len(self.graph)
+        # Initializing a vector to mark visited vertices
+        V = [False] * len(self.graph)
 
-        # Mark the source node as
-        # visited and enqueue it
+        # Mark the source node as visited and enqueue it
         queue = self.graph[s]
-        visited[s] = True
-        print(s, end=" ")
+        V[s] = True
+        print("{} \n".format(s))
 
         while queue:
 
-            # Dequeue a vertex from
-            # queue and print it
+            # Get the first vertex in queue
             k = queue.pop(0)
 
-            # Get all adjacent vertices of the
-            # dequeued vertex s. If a adjacent
-            # has not been visited, then mark it
-            # visited and enqueue it
-            if not visited[k]:
-                print(k, end=" ")
+            # Check whether vertex k was visited. If not, print it and extend
+            # the original list of s, with adjacent vertices of k, and then
+            # finally mark vertex k as visited.
+            if not V[k]:
+                print("{} \n".format(k))
                 queue.extend(self.graph[k])
-                visited[k] = True
+                V[k] = True
 
-    def DFS_int(self, s, visited):
+    def dfs_int(self, s, V):
 
-        visited[s] = True
-        print(s, end=" ")
+        V[s] = True
+        print("{} \n".format(s))
 
         for i in self.graph[s]:
-            if not visited[i]:
-                self.DFS_int(i, visited)
+            if not V[i]:
+                self.dfs_int(i, V)
 
-    def DFS(self, s):
+    def dfs(self, s):
+        """
+        This is an implementation of Depth First Search, where we start from a certain vertex s,
+        and we explore an adjacent unvisited vertex as far as possible, before we start backtracking.
+        :param s: The starting vertex.
+        :return:
+        """
 
-        visited = [False] * len(self.graph)
+        V = [False] * len(self.graph)
+        self.dfs_int(s, V)
 
-        self.DFS_int(s, visited)
 
+################################################################################
+#          Implementation of Dijkstra's Shortest Path algorithm                #
+################################################################################
 
-class djikstra_graph():
-
-    def __init__(self, num_vertex, adjecendy_mat):
+class shortest_path():
+    def __init__(self, num_vertex, adjacendy_mat):
+        """
+        The graph is initialized with an adjacency matrix containing the weight
+        values of edges connecting every two vertices, and the number of vertices,
+        which is also the size of the adjacency matrix.
+        :param num_vertex: Number of vertices in the graph.
+        :param adjacendy_mat: The adjacency matrix.
+        """
         self.v = num_vertex
-        self.mat = adjecendy_mat
+        self.mat = adjacendy_mat
 
     def min_dist(self, visited, dist):
+        """
+        This function returns the vertex having the minimum distance from the source vertex,
+        and which is not yet visited by the algorithm.
+        :param visited: A list of boolean values.
+        :param dist: A list of each vertex distance from the source vertex.
+        :return:
+        """
 
         min_ind = 0
         m = sys.maxsize
@@ -192,32 +277,48 @@ class djikstra_graph():
     def print_dist(self, dist):
 
         for i in range(self.v):
-            print(i, "t", dist[i])
+            print("Distance to {}: {}".format(i, dist[i]))
 
     def djikstra(self, src):
+        """
+        Starting from a certain vertex src, we wanna know what is the shortest
+        distance to every other vertex in the graph.
+        :param src: The starting vertex.
+        :return:
+        """
 
-        visited = [False] * self.v
+        # A list to mark visited vertices.
+        V = [False] * self.v
+        # A list containing distances from the vertex src, to all other vertices.
         dist = [sys.maxsize] * self.v
+        # The distance for src is 0.
         dist[src] = 0
 
+        # We loop through the number of vertices, and at each iteration we
+        # pick the vertex having the minimum distance from src vertex.
         for i in range(self.v):
 
-            u = self.min_dist(visited, dist)
-            visited[u] = True
+            u = self.min_dist(V, dist)
+            V[u] = True
 
             for j in range(self.v):
-                if self.mat[u][j] != 0 and not visited[j] and dist[u] + self.mat[u][j] < dist[j]:
+                # First, we check whether there's an edge connecting the vertex
+                # u with the vertex j (mat[u][j] != 0), and then we check if the
+                # vertex j is not already visited. Finally, if the previous conditions
+                # are verified, we check if u vertex's distance plus the edge weight
+                # connecting u and j is smaller than the j vertex's distance
+                if self.mat[u][j] != 0 and not V[j] and dist[u] + self.mat[u][j] < dist[j]:
                     dist[j] = dist[u] + self.mat[u][j]
 
         self.print_dist(dist)
 
 
+adjecendy_mat = [[0, 3, 2, 0, 0],
+                 [3, 0, 0, 1, 5],
+                 [2, 0, 0, 6, 0],
+                 [0, 1, 6, 0, 1],
+                 [0, 5, 0, 1, 0]]
 
-g = djikstra_graph(9, adjecendy_mat)
-g.djikstra(0)
-
-
-
-
-
-
+num_vertex = 5
+dji = shortest_path(num_vertex, adjecendy_mat)
+dji.djikstra(0)
