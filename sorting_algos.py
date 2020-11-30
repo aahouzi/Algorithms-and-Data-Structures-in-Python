@@ -5,7 +5,7 @@
 #                         Source Language: Python                                          #
 #     Repository: https://github.com/aahouzi/Algorithms-and-Data-Structures-in-Python      #
 #                              --- Code Description ---                                    #
-#                   Implementation of sorting algorithms in Python                         #
+#                   Implementation of sorting algorithms in Python.                        #
 ############################################################################################
 
 
