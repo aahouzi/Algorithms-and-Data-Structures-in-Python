@@ -1,4 +1,7 @@
 # Algorithms and Data Structures in Python
+Enseirb-Matmeca, Bordeaux INP | [Anas AHOUZI](https://www.linkedin.com/in/anas-ahouzi-6aab0b155/)
+***
+
 ## Description
 This repository contains a Python implementation of basic sorting algorithms, as well as an implementation of trees, graphs and some relevant techniques and algorithms to manipulate those data structures. It will also include some basic problems of Dynamic Programming, and how can one think about a problem in order to solve it efficiently. More precisely, this involves the following algorithms: 
 
@@ -6,3 +9,16 @@ This repository contains a Python implementation of basic sorting algorithms, as
 - **Trees & Graphs:** OOP implementation, Printing a tree, Inserting an element in a binary tree, Searching in a binary tree, Min/Max in a binary tree, Deleting elements in a tree, Breadth First Search (BFS), Depth First Search (DFS), Dijkstra's Shortest Path algorithm.
 - **Dynamic Programming:** The coin change problem, Stock maximise, etc..
 - **Others:** Problems involving lists, hashmaps, arrays, sets, etc..
+---
+For any information, feedback or questions, please [contact me][anas-email]
+
+
+
+
+
+
+
+
+
+
+[anas-email]: mailto:ahouzi2000@hotmail.fr
